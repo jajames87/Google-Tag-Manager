@@ -1,0 +1,16 @@
+<script>
+(function(){
+var data = {
+  "@context": "http://www.schema.org",
+  "@type": "product",
+  "brand": "PDU Online",
+  "name": {{Page Title}},
+  "image": {{Product Image}},
+  "description": {{Meta Description}}
+}
+var script = document.createElement('script');
+script.type = "application/ld+json";
+script.innerHTML = JSON.stringify(data);
+document.getElementsByTagName('head')[0].appendChild(script);
+})(document);
+</script>
