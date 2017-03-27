@@ -1,0 +1,2070 @@
+{
+    "exportFormatVersion": 1.3,
+    "exportTime": "2016-05-25 00:02:15",
+    "containerVersion": {
+        "accountId": "263956808",
+        "containerId": "2187362",
+        "containerVersionId": "0",
+        "deleted": false,
+        "container": {
+            "accountId": "263956808",
+            "containerId": "2187362",
+            "name": "Complete Pack",
+            "publicId": "GTM-5SXXR6",
+            "timeZoneCountryId": "US",
+            "timeZoneId": "America/Los_Angeles",
+            "notes": "",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1464134526017",
+            "enabledBuiltInVariable": [
+                "EVENT",
+                "DEBUG_MODE",
+                "CLICK_URL",
+                "PAGE_URL",
+                "PAGE_HOSTNAME",
+                "CONTAINER_ID",
+                "CLICK_ELEMENT"
+            ]
+        },
+        "tag": [
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "tagId": "14",
+                "name": "CU - AJAX Listener - LunaMetrics Plugin",
+                "type": "html",
+                "liveOnly": false,
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script id=\"gtm-jq-ajax-listen\" type=\"text/javascript\">\n  (function() {\n\n    'use strict';\n\tvar $;\n    var n = 0;\n    init();\n\n    function init(n) {\n\n      // Ensure jQuery is available before anything\n      if (typeof jQuery !== 'undefined') {\n\t\t\n        // Define our $ shortcut locally\n        $ = jQuery;\n        bindToAjax();\n\n      // Check for up to 10 seconds\n      } else if (n < 20) {\n\t\n        n++;\n        setTimeout(init, 500);\n\n      }\n\n    }\n\n    function bindToAjax() {\n\n      $(document).bind('ajaxComplete', function(evt, jqXhr, opts) {\n\n        // Create a fake a element for magically simple URL parsing\n        var fullUrl = document.createElement('a');\n        fullUrl.href = opts.url;\n\n        // IE9+ strips the leading slash from a.pathname because who wants to get home on time Friday anyways\n        var pathname = fullUrl.pathname[0] === '/' ? fullUrl.pathname : '/' + fullUrl.pathname;\n        // Manually remove the leading question mark, if there is one\n        var queryString = fullUrl.search[0] === '?' ? fullUrl.search.slice(1) : fullUrl.search;\n        // Turn our params and headers into objects for easier reference\n        var queryParameters = objMap(queryString, '&', '=', true);\n        var headers = objMap(jqXhr.getAllResponseHeaders(), '\\n', ':');\n\n        // Blindly push to the dataLayer because this fires within GTM\n        dataLayer.push({\n          'event': 'ajaxComplete',\n          'attributes': {\n            // Return empty strings to prevent accidental inheritance of old data\n            'type': opts.type || '',\n            'url': fullUrl.href || '',\n            'queryParameters': queryParameters,\n            'pathname': pathname || '',\n            'hostname': fullUrl.hostname || '',\n            'protocol': fullUrl.protocol || '',\n            'fragment': fullUrl.hash || '',\n            'statusCode': jqXhr.status || '',\n            'statusText': jqXhr.statusText || '',\n            'headers': headers,\n            'timestamp': evt.timeStamp || '',\n            'contentType': opts.contentType || '',\n            // Defer to jQuery's handling of the response\n            'response': (jqXhr.responseJSON || jqXhr.responseXML || jqXhr.responseText || '')\n          }\n        });\n\n      });\n\n    }\n\n    function objMap(data, delim, spl, decode) {\n\n      var obj = {};\n\n      // If one of our parameters is missing, return an empty object\n      if (!data || !delim || !spl) {\n\n        return {};\n\n      }\n\n      var arr = data.split(delim);\n      var i;\n\n      if (arr) {\n\n        for (i = 0; i < arr.length; i++) {\n\n          // If the decode flag is present, URL decode the set\n          var item = decode ? decodeURIComponent(arr[i]) : arr[i];\n          var pair = item.split(spl);\n\n          var key = trim_(pair[0]);\n          var value = trim_(pair[1]);\n\n          if (key && value) {\n\n            obj[key] = value;\n\n          }\n\n        }\n\n      }\n\n      return obj;\n\n    }\n\n    // Basic .trim() polyfill\n    function trim_(str) {\n\n      if (str) {\n\n        return str.replace(/^[\\s\\uFEFF\\xA0]+|[\\s\\uFEFF\\xA0]+$/g, '');\n\n      }\n\n    }\n\n\n  })();\n  /*\n   * v0.1.0\n   * Created by the Google Analytics consultants at http://www.lunametrics.com\n   * Written by @notdanwilkerson\n   * Documentation: http://www.lunametrics.com/blog/2015/08/27/ajax-event-listener-google-tag-manager/\n   * Licensed under the Creative Commons 4.0 Attribution Public License\n   */\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "0",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "parentFolderId": "20",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "tagId": "15",
+                "name": "CU - Cookie Remover - LunaMetrics Plugin",
+                "type": "html",
+                "liveOnly": false,
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script type=\"text/javascript\" id=\"gtm-cookie-remover\">\n  (function(document) {\n\n\n    var cookieName    = {{Cookie Name}};  // Name of cookie being removed\n    var cookieDomain  = {{Cookie Domain}};  // Domain cookie being removed is stored on\n    var cookiePath    = {{Cookie Path}} || '/';  // Path that cookie to remove is stored. Defaults to '/'.\n        \n    if(typeof cookieName !== 'undefined') {\n       \n        document.cookie = cookieName + '=; Expires=Thu, 01 Jan 1970 00:00:01 GMT'\n                        + (cookieDomain ? '; Domain=' + cookieDomain : '') \n                        + (cookiePath ? '; Path=' + cookiePath : '');\n        \n    }\n  \n    // To prevent accidental inheritance, flush our cookieValues\n    var fields = ['cookieName', 'cookieDomain', 'cookiePath'];\n    var i;\n    for (i = 0; i < fields.length; i++) {\n     \n      window.google_tag_manager[{{Container ID}}].dataLayer.reset('attributes.' + fields[i]);\n    \n    }\n    \n  })(document);\n  /*\n   * v0.2.0\n   * Created by the Google Analytics consultants at http://www.lunametrics.com\n   * Written by @notdanwilkerson\n   * Licensed under the Creative Commons 4.0 Attribution Public License\n   */\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "0",
+                "firingTriggerId": [
+                    "29"
+                ],
+                "parentFolderId": "22",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "tagId": "16",
+                "name": "CU - Cookie Setter - LunaMetrics Plugin",
+                "type": "html",
+                "liveOnly": false,
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script type=\"text/javascript\" id=\"gtm-cookie-setter\">\n  (function(document) {\n\n    var cookieName    = {{Cookie Name}};  // Name of the cookie; preferred syntax is all lowercase, with no spaces\n    var cookieValue   = encodeURIComponent( {{Cookie Value}} );  // The value stored with the cookie. Is automatically encoded. Check 'Decode cookie value' when using with 1st Party Cookie Variable\n    var cookieExpires = parseFloat({{Cookie Expires}});  // Expiration length in terms of days. Defaults to expiring when the browser closes. Can accept a fraction for > 1 day time periods, e.g. 1/48 (30 minutes)\n    var cookieDomain  = {{Cookie Domain}};  // Hostname to store the cookie on. Defaults to browser handling.\n    var cookiePath    = {{Cookie Path}} || '/'; // Path to store cookie at. Defaults to '/'.\n        \n    var expirationDate = '';\n\n    if(!isNaN(cookieExpires) && cookieExpires !== 0) {\n\n      expirationDate = \"; Expires=\" + new Date(+new Date() + 1000 * 60 * 60 * 24 * cookieExpires).toGMTString();\n\n    }\n\n    if(typeof cookieName !== 'undefined' && typeof cookieValue !== 'undefined') {\n\n      document.cookie = cookieName + '=' +\n                        cookieValue +\n                        expirationDate +\n                        (cookieDomain ? '; Domain=' + cookieDomain : '') +\n                        (cookiePath ? '; Path=' + cookiePath  : '');\n\n    }\n  \n      // To prevent accidental inheritance, flush our cookieValues\n    var fields = ['cookieName', 'cookieValue', 'cookieDomain', 'cookiePath', 'cookieExpires'];\n    var i;\n    for (i = 0; i < fields.length; i++) {\n     \n      window.google_tag_manager[{{Container ID}}].dataLayer.reset('attributes.' + fields[i]);\n    \n    }\n    \n  })(document);\n  /*\n   * v0.2.0\n   * Created by the Google Analytics consultants at http://www.lunametrics.com\n   * Written by @notdanwilkerson\n   * Licensed under the Creative Commons 4.0 Attribution Public License\n   */\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "0",
+                "firingTriggerId": [
+                    "31"
+                ],
+                "parentFolderId": "22",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "tagId": "17",
+                "name": "CU - Engagement Timer - LunaMetrics Plugin",
+                "type": "html",
+                "liveOnly": false,
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script id=\"gtm-mip-engagement-timer\" type=\"text/javascript\">\n    (function(document, window, undefined) {\n      \n      // Cross-browser compliant event listener\nfunction addEvent(el, evt, fn) { if (el.addEventListener) { el.addEventListener(evt, fn); } else if (el.attachEvent) { el.attachEvent('on' + evt, function(evt) { fn.call(el, evt); }); } else if (typeof el['on' + evt] === 'undefined' || el['on' + evt] === null) { el['on' + evt] = function(evt) { fn.call(el, evt); }; } } \nfunction removeEvent(el, evt, fn) { if (el.removeEventListener) { return el.removeEventListener(evt, fn); } if (el.detachEvent) { return el.detachEvent('on' + evt, fn); } if (el['on' + evt] === fn) { return el['on'] = null; } }; \n      \n      \n        var counter = 0;\n        var resetTimeoutEvents = ['mousemove', 'touchstart', 'scroll', 'keydown'];\n        var engagementInterval,\n            engagementTimeout,\n            hidden, \n            visibilityChange;\n    \n        // Vendor fill\n        if (typeof document.hidden !== \"undefined\") {\n    \n          // Opera 12.10 and Firefox 18 and later support \n          hidden = \"hidden\";\n          visibilityChange = \"visibilitychange\";\n          \n        } else if (typeof document.mozHidden !== \"undefined\") {\n            \n          hidden = \"mozHidden\";\n          visibilityChange = \"mozvisibilitychange\";\n          \n        } else if (typeof document.msHidden !== \"undefined\") {\n            \n          hidden = \"msHidden\";\n          visibilityChange = \"msvisibilitychange\";\n          \n        } else if (typeof document.webkitHidden !== \"undefined\") {\n            \n          hidden = \"webkitHidden\";\n          visibilityChange = \"webkitvisibilitychange\";\n          \n        }\n    \n        setEngagementTimeout();\n        registerTimeoutEvents();\n        setEngagementInterval();\n    \n        if(visibilityChange) {         \n          addEvent(document, visibilityChange, function() {\n            clearInterval(engagementInterval);    \n            if(!document[hidden]) {    \n              setEngagementInterval();   \n            }   \n          });  \n        } else {        \n          addEvent(window, 'blur', function() {    \n            clearInterval(engagementInterval);    \n          });    \n          addEvent(window, 'focus', function() {    \n            clearInterval(engagementInterval);\n            setEngagementInterval();    \n          });    \n        }\n    \n        function registerTimeoutEvents() {    \n          for(i = resetTimeoutEvents.length; i > -1; i--) {    \n            var _event = resetTimeoutEvents[i];\n            addEvent(window, _event, resetEngagementTimeout);    \n          }    \n        }\n    \n        function setEngagementInterval() {    \n          engagementInterval = setInterval(function() {    \n            counter++;\n            window['dataLayer'].push({\n              'event': 'engagementTimer',\n              'attributes': {\n                'counter': counter * 15\n              }\n            });    \n          }, Number({{Engagement Timer Interval Milliseconds}}) );    \n        }\n    \n        function setEngagementTimeout() {            \n          engagementTimeout = setTimeout(function() {            \n            clearInterval(engagementInterval);\n            engagementInterval = false;    \n          }, Number({{Engagement Timer Idle Milliseconds}}) + 1 );    \n        }\n    \n        function resetEngagementTimeout() {    \n          // Clear our events\n          for(i = resetTimeoutEvents.length; i > -1; i--) {    \n            var _event = resetTimeoutEvents[i];\n            removeEvent(window, _event, resetEngagementTimeout);    \n          }    \n          setTimeout(function() {    \n            // Re-register our idle reset events in one seconds\n            registerTimeoutEvents();    \n          }, 1500);\n    \n          if(!engagementInterval) {\n    \n            setEngagementInterval();\n    \n          }\n    \n          clearTimeout(setEngagementTimeout);\n          setEngagementTimeout();\n    \n        }\n\n    })(document, window);\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "0",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "parentFolderId": "23",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "tagId": "18",
+                "name": "CU - Scroll Tracking - LunaMetrics Plugin",
+                "type": "html",
+                "liveOnly": false,
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script type=\"text/javascript\" id=\"gtm-scroll-tracking\">\n;(function(document, window, config) {\n\n  'use strict';\n\n  var cache = {};\n\n  // If our document is ready to go, fire straight away\n  if(document.readyState !== 'loading') {\n\n    init();\n\n  } else {\n\n    // On IE8 this fires on window.load, all other browsers will fire when DOM ready\n    document.addEventListener ? \n      addEvent(document, 'DOMContentLoaded', init) : \n      addEvent(window, 'load', init);\n\n  }\n\n  function init() {\n\n    // Browser dependencies, script fails silently\n    if (!document.querySelector || !document.body.getBoundingClientRect) {\n\n      return false;\n\n    }\n\n    // Set our dataLayer name for later\n    config.dataLayerName = config.dataLayerName || 'dataLayer';\n\n    // Initialize our distances, for later\n    config.distances = config.distances || {};\n\n    checkDepth();\n    addEvent(window, 'scroll', throttle(checkDepth, 500));\n\n  }\n\n  function getMarks(_docHeight, _offset) {\n\n    var marks = {};\n    var percents = [];\n    var pixels = [];\n\n    if(config.distances.percentages) {\n\n      if(config.distances.percentages.each) {\n\n        percents = percents.concat(config.distances.percentages.each);\n\n      }\n\n      if(config.distances.percentages.every) {\n\n        var _everyPercent = every_(config.distances.percentages.every, 100);\n        percents = percents.concat(_everyPercent);\n\n      }\n\n    }\n\n    if(config.distances.pixels) {\n\n      if(config.distances.pixels.each) {\n\n        pixels = pixels.concat(config.distances.pixels.each);\n\n      }\n\n      if(config.distances.pixels.every) {\n\n        var _everyPixel = every_(config.distances.pixels.every, _docHeight);\n        pixels = pixels.concat(_everyPixel);\n\n      }\n\n    }\n\n    marks = addMarks_(marks, percents, '%', _docHeight, _offset);\n    marks = addMarks_(marks, pixels, 'px', _docHeight, _offset);\n\n    return marks;\n\n  }\n\n  function addMarks_(marks, points, symbol, _docHeight, _offset) {\n\n    var i;\n\n    for(i = 0; i < points.length; i++) {\n\n      var _point = parseInt(points[i], 10);\n      var height = symbol !== '%' ? _point + _offset : _docHeight * (_point / 100) + _offset;\n      var mark = _point + symbol;\n\n      if(height <= _docHeight + _offset) {\n\n        marks[mark] = height;\n\n      }\n\n    }\n\n    return marks;\n\n  }\n\n  function every_(n, total) {\n\n    var _n = parseInt(n, 10);\n    var _num = total / _n;\n    var arr = [];\n    var i;\n    \n    for(i = 1; i < _num + 1; i++) {\n\n      arr.push(i * _n);\n\n    }\n\n    return arr;\n\n  }\n\n  function checkDepth() {\n\n    var _bottom = parseBorder_(config.bottom);\n    var _top = parseBorder_(config.top);\n\n    var height = docHeight(_bottom, _top);\n    var marks = getMarks(height, (_top || 0));\n    var _curr = currentPosition();\n    var key;\n\n    for(key in marks) {\n\n      if(_curr > marks[key] && !cache[key]) {\n\n        cache[key] = true;\n        fireAnalyticsEvent(key);\n\n      }\n\n    }\n\n  }\n\n  function fireAnalyticsEvent(distance) {\n\n    var _ga = window.GoogleAnalyticsObject;\n\n    if(typeof window[config.dataLayerName] !== 'undefined' && !config.forceSyntax) { \n\n      window[config.dataLayerName].push( {\n        'event': 'scrollTracking',\n        'attributes': {\n          'distance': distance,\n          'label': config.label\n        }\n      });\n\n    } else if (typeof window[_ga] === 'function' && \n              typeof window[_ga].getAll === 'function' && \n              config.forceSyntax !== 2) \n    {\n\n      window[_ga]('send', 'event', config.category, distance, config.label, {'nonInteraction': 1});\n\n    } else if(typeof window._gaq !== 'undefined' && config.forceSyntax !== 1) {\n\n      window._gaq.push(['_trackEvent', config.category, distance, config.label, 0, true]);\n\n    }\n\n  }\n\n  function parseBorder_(border) {\n\n    if(typeof border === 'number' || parseInt(border, 10)) {\n\n      return parseInt(border, 10);\n\n    }\n\n    try {\n\n      // If we have an element or a query selector, poll getBoundingClientRect\n      var el = border.nodeType === 1 ? border : document.querySelector(border);\n      var docTop = document.body.getBoundingClientRect().top;\n      var _elTop = Math.floor(el.getBoundingClientRect().top - docTop);\n\n      return _elTop;\n\n    } catch (e) {\n\n      return void(0);\n\n    }\n\n  }\n\n  // Adapted from https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY\n  function currentPosition() {\n\n    var supportPageOffset = window.pageXOffset !== undefined;\n    var isCSS1Compat = ((document.compatMode || \"\") === \"CSS1Compat\");\n\n    var currScrollTop = supportPageOffset ?\n                        window.pageYOffset :\n                        isCSS1Compat ?\n                          document.documentElement.scrollTop :\n                          document.body.scrollTop;\n\n    return parseInt(currScrollTop, 10) + parseInt(viewportHeight(), 10);\n\n  }\n\n  function viewportHeight() {\n\n    var elem = (document.compatMode === \"CSS1Compat\") ?\n              document.documentElement :\n              document.body;\n\n    return elem.clientHeight;\n\n  }\n\n  function docHeight(_bottom, _top) {\n\n    var body = document.body;\n    var html = document.documentElement;\n    \n    var height = Math.max(body.scrollHeight, body.offsetHeight, \n                      html.clientHeight, html.scrollHeight, html.offsetHeight);\n\n\n    if(_top) {\n\n      height = height - _top;\n\n    }\n\n    if(_bottom) {\n\n      height = _bottom - (_top || 0);\n\n    }\n\n    return height - 5;\n\n  }\n\n  /*\n  * Throttle function borrowed from:\n  * Underscore.js 1.5.2\n  * http://underscorejs.org\n  * (c) 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors\n  * Underscore may be freely distributed under the MIT license.\n  */\n  function throttle(func, wait) {\n    var context, args, result;\n    var timeout = null;\n    var previous = 0;\n    var later = function() {\n      previous = new Date;\n      timeout = null;\n      result = func.apply(context, args);\n    };\n    return function() {\n      var now = new Date;\n      if (!previous) previous = now;\n      var remaining = wait - (now - previous);\n      context = this;\n      args = arguments;\n      if (remaining <= 0) {\n        clearTimeout(timeout);\n        timeout = null;\n        previous = now;\n        result = func.apply(context, args);\n      } else if (!timeout) {\n        timeout = setTimeout(later, remaining);\n      }\n      return result;\n    };\n  }\n\n  // Cross-browser compliant event listener\n  function addEvent(el, evt, fn) {\n\n    if (el.addEventListener) {\n\n      el.addEventListener(evt, fn);\n\n    } else if (el.attachEvent) {\n\n      el.attachEvent('on' + evt, function(evt) {\n\n        // Call the event to ensure uniform 'this' handling, pass it event\n        fn.call(el, evt);\n\n      });\n\n    } else if (typeof el['on' + evt] === 'undefined' || el['on' + evt] === null) {\n\n      el['on' + evt] = function(evt) {\n\n        // Call the event to ensure uniform 'this' handling, pass it event\n        fn.call(el, evt);\n\n      };\n\n    }\n\n  }\n\n})(document, window, {\n  // Use 2 to force Classic Analytics hits and 1 for Universal hits\n  'forceSyntax': false,\n  // False if you just use the default dataLayer variable, otherwise enter it here\n  'dataLayerName': false,\n  'distances': {\n    // Configure percentages of page you'd like to see if users scroll past\n    'percentages': {\n      'each': [10,90],\n      'every': 25\n    },\n    // Configure for pixel measurements of page you'd like to see if users scroll past\n    'pixels': {\n      'each': [],\n      'every': null\n    }\n  },\n  // Accepts a number, DOM element, or query selector to determine the top of the scrolling area\n  'top': null,\n  // Accepts a number, DOM element, or query selector to determine the bottom of the scrolling area\n  'bottom': null,\n  // Text for Event Category\n  'category': 'Scroll Tracking',\n  // Text for Event Label\n  'label': document.location.pathname\n});\n/*\n * v1.0.2\n * Created by the Google Analytics consultants at http://www.lunametrics.com/\n * Written by @notdanwilkerson\n * Documentation: https://github.com/lunametrics/gascroll/\n * Licensed under the Creative Commons 4.0 Attribution Public License\n */\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "0",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "parentFolderId": "26",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "tagId": "19",
+                "name": "CU - YouTube Tracking - LunaMetrics Plugin",
+                "type": "html",
+                "liveOnly": false,
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script type=\"text/javascript\" id=\"gtm-youtube-tracking\">\n;(function(document, window, config) {\n\n  'use strict';\n\n  var _config = config || {};\n  var forceSyntax = _config.forceSyntax || 0;\n  var dataLayerName = _config.dataLayerName || 'dataLayer';\n  // Default configuration for events\n  var eventsFired = {\n    'Play': true,\n    'Pause': true,\n    'Watch to End': true\n  };\n  var key;\n\n  // Fetches YouTube JS API\n  var tag = document.createElement('script');\n  tag.src = '//www.youtube.com/iframe_api';\n  var firstScriptTag = document.getElementsByTagName('script')[0];\n  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);\n\n  for (key in _config.events) {\n\n    if (_config.events.hasOwnProperty(key)) {\n\n      eventsFired[key] = _config.events[key];\n\n    }\n\n  }\n\n  window.onYouTubeIframeAPIReady = (function() {\n\n    var cached = window.onYouTubeIframeAPIReady;\n\n    return function() {\n\n      if (cached) {\n\n        cached.apply(this, arguments);\n\n      }\n\n      // This script won't work on IE 6 or 7, so we bail at this point if we detect that UA\n      if (navigator.userAgent.match(/MSIE [67]\\./gi)) return;\n\n      if (document.readyState !== 'loading') {\n\n        init();\n\n      } else {\n\n        // On IE8 this fires on window.load, all other browsers will fire when DOM ready\n        if (document.addEventListener) {\n\n          addEvent(document, 'DOMContentLoaded', init);\n\n        } else {\n\n          addEvent(window, 'load', init);\n\n        }\n\n      }\n\n    };\n\n  })();\n\n  // Invoked by the YouTube API when it's ready\n  function init() {\n\n    var potentialVideos = getTagsAsArr_('iframe').concat(getTagsAsArr_('embed'));\n    digestPotentialVideos(potentialVideos);\n\n    // Will bind to dynamically added videos. CAPTURE NOT SUPPORTED BY IE8\n    if ('addEventListener' in document) { \n      document.addEventListener('load', bindToNewVideos_, true);\n    }\n\n\n  }\n\n  // Take our videos and turn them into trackable videos with events\n  function digestPotentialVideos(potentialVideos) {\n\n    var i;\n\n    for (i = 0; i < potentialVideos.length; i++) {\n\n      var isYouTubeVideo = checkIfYouTubeVideo(potentialVideos[i]);\n\n      if (isYouTubeVideo) {\n\n        var normalizedYouTubeIframe = normalizeYouTubeIframe(potentialVideos[i]);\n        addYouTubeEvents(normalizedYouTubeIframe);\n\n      }\n\n    }\n\n  }\n\n  // Determine if the element is a YouTube video or not\n  function checkIfYouTubeVideo(potentialYouTubeVideo) {\n\n    var potentialYouTubeVideoSrc = potentialYouTubeVideo.src || '';\n\n    if (potentialYouTubeVideoSrc.indexOf('youtube.com/embed/') > -1 ||\n      potentialYouTubeVideoSrc.indexOf('youtube.com/v/') > -1) {\n\n      return true;\n\n    }\n\n    return false;\n\n  }\n\n  function jsApiEnabled(url) {\n\n    return url.indexOf('enablejsapi') > -1;\n\n  }\n\n  function originEnabled(url) {\n\n    return url.indexOf('origin') > -1;\n\n  }\n\n  // Turn embed objects into iframe objects and ensure they have the right parameters\n  function normalizeYouTubeIframe(youTubeVideo) {\n\n    var loc = window.location;\n    var a = document.createElement('a');\n    a.href = youTubeVideo.src;\n    a.hostname = 'www.youtube.com';\n    a.protocol = loc.protocol;\n    var tmpPathname = a.pathname.charAt(0) === '/' ? a.pathname : '/' + a.pathname; // IE10 shim\n\n    // For security reasons, YouTube wants an origin parameter set that matches our hostname\n\n    if (!jsApiEnabled(a.search)) {\n\n      a.search = (a.search.length > 0 ? a.search + '&' : '') + 'enablejsapi=1';\n\n    }\n\n    if (!originEnabled(a.search) && loc.hostname.indexOf('localhost') === -1) {\n    \n      var port = loc.port ?  ':' + loc.port : '';\n      var origin = loc.protocol + '%2F%2F' + loc.hostname + port;\n\n      a.search = a.search + '&origin=' + origin;\n\n    }\n\n    if (youTubeVideo.type === 'application/x-shockwave-flash') {\n\n      var newIframe = document.createElement('iframe');\n      newIframe.height = youTubeVideo.height;\n      newIframe.width = youTubeVideo.width;\n      tmpPathname = tmpPathname.replace('/v/', '/embed/');\n\n      youTubeVideo.parentNode.parentNode.replaceChild(newIframe, youTubeVideo.parentNode);\n\n      youTubeVideo = newIframe;\n\n    }\n\n    a.pathname = tmpPathname;\n\n    if (youTubeVideo.src !== a.href + a.hash) {\n\n      youTubeVideo.src = a.href + a.hash;\n\n    }\n\n    return youTubeVideo;\n\n  }\n\n  // Add event handlers for events emitted by the YouTube API\n  function addYouTubeEvents(youTubeIframe) {\n\n    var player = YT.get(youTubeIframe.id);\n\n    if (!player) {\n\n      player = new YT.Player(youTubeIframe, {}); \n\n    }\n\n    if (typeof youTubeIframe.pauseFlag === 'undefined') { \n\n      youTubeIframe.pauseFlag = false;\n      player.addEventListener('onStateChange', function(evt) {\n\n        onStateChangeHandler(evt, youTubeIframe);\n\n      });\n\n    }\n\n  }\n\n  // Returns key/value pairs of percentages: number of seconds to achieve\n  function getMarks(duration) {\n\n    var marks = {};\n\n    // For full support, we're handling Watch to End with percentage viewed\n    if (_config.events['Watch to End']) {\n\n      marks['Watch to End'] = Math.min(duration - 3, Math.floor(duration * 0.99));\n\n    }\n\n    if (_config.percentageTracking) {\n\n      var points = [];\n      var i;\n\n      if (_config.percentageTracking.each) {\n\n        points = points.concat(_config.percentageTracking.each);\n\n      }\n\n      if (_config.percentageTracking.every) {\n\n        var every = parseInt(_config.percentageTracking.every, 10);\n        var num = 100 / every;\n\n        for (i = 1; i < num; i++) {\n\n          points.push(i * every);\n\n        }\n\n      }\n\n      for (i = 0; i < points.length; i++) {\n\n        var _point = points[i];\n        var _mark = _point + '%';\n        var _time = duration * _point / 100;\n\n        marks[_mark] = Math.floor(_time);\n\n      }\n\n    }\n\n    return marks;\n\n  }\n\n  function checkCompletion(player, marks, videoId) {\n\n    var currentTime = player.getCurrentTime();\n    var key;\n\n    player[videoId] = player[videoId] || {};\n\n    for (key in marks) {\n\n      if (marks[key] <= currentTime && !player[videoId][key]) {\n\n        player[videoId][key] = true;\n        fireAnalyticsEvent(videoId, key);\n\n      }\n\n    }\n\n  }\n\n  // Event handler for events emitted from the YouTube API\n  function onStateChangeHandler(evt, youTubeIframe) {\n\n    var stateIndex = evt.data;\n    var player = evt.target;\n    var targetVideoUrl = player.getVideoUrl();\n    var targetVideoId = targetVideoUrl.match(/[?&]v=([^&#]*)/)[1]; // Extract the ID    \n    var playerState = player.getPlayerState();\n    var duration = Math.floor(player.getDuration());\n    var marks = getMarks(duration);\n    var playerStatesIndex = {\n      '1': 'Play',\n      '2': 'Pause'\n    };\n    var state = playerStatesIndex[stateIndex];\n\n    youTubeIframe.playTracker = youTubeIframe.playTracker || {};\n\n    if (playerState === 1 && !youTubeIframe.timer) {\n\n      clearInterval(youTubeIframe.timer);\n\n      youTubeIframe.timer = setInterval(function() {\n\n        // Check every second to see if we've hit any of our percentage viewed marks\n        checkCompletion(player, marks, youTubeIframe.videoId);\n\n      }, 1000);\n\n    } else {\n\n      clearInterval(youTubeIframe.timer);\n      youTubeIframe.timer = false;\n\n    }\n\n    // Playlist edge-case handler\n    if (stateIndex === 1) {\n\n      youTubeIframe.playTracker[targetVideoId] = true;\n      youTubeIframe.videoId = targetVideoId;\n      youTubeIframe.pauseFlag = false;\n\n    }\n\n    if (!youTubeIframe.playTracker[youTubeIframe.videoId]) {\n\n      // This video hasn't started yet, so this is spam\n      return false;\n\n    }\n\n    if (stateIndex === 2) {\n\n      if (!youTubeIframe.pauseFlag) {\n\n        youTubeIframe.pauseFlag = true;\n\n      } else {\n\n        // We don't want to fire consecutive pause events\n        return false;\n\n      }\n\n    }\n\n    // If we're meant to track this event, fire it\n    if (eventsFired[state]) {\n\n      fireAnalyticsEvent(youTubeIframe.videoId, state);\n\n    }\n\n  }\n\n  // Fire an event to Google Analytics or Google Tag Manager\n  function fireAnalyticsEvent(videoId, state) {\n\n    var videoUrl = 'https://www.youtube.com/watch?v=' + videoId;\n    var _ga = window.GoogleAnalyticsObject;\n\n    if (typeof window[dataLayerName] !== 'undefined' && !_config.forceSyntax) {\n\n      window[dataLayerName].push({\n\n        'event': 'youTubeTrack',\n        'attributes': {\n\n          'videoUrl': videoUrl,\n          'videoAction': state\n\n        }\n\n      });\n\n    } else if (typeof window[_ga] === 'function' &&\n      typeof window[_ga].getAll === 'function' &&\n      _config.forceSyntax !== 2) {\n\n      window[_ga]('send', 'event', 'Videos', state, videoUrl);\n\n    } else if (typeof window._gaq !== 'undefined' && forceSyntax !== 1) {\n\n      window._gaq.push(['_trackEvent', 'Videos', state, videoUrl]);\n\n    }\n\n  }\n\n  // Simple cross-browser event listener\n  function addEvent(el, name, fn) {\n\n    if (el.addEventListener) {\n\n      el.addEventListener(name, fn);\n\n    } else if (el.attachEvent) {\n\n      el.attachEvent('on' + name, function(evt) {\n\n        evt.target = evt.target || evt.srcElement;\n        // Call the event to ensure uniform 'this' handling, pass it event\n        fn.call(el, evt);\n\n      });\n\n    } else if (typeof el['on' + name] === 'undefined' || el['on' + name] === null) {\n\n\n      el['on' + name] = function(evt) {\n\n        evt.target = evt.target || evt.srcElement;\n        // Call the event to ensure uniform 'this' handling, pass it event\n        fn.call(el, evt);\n\n      };\n\n    }\n\n  }\n\n  // Returns array of elements with given tag name\n  function getTagsAsArr_(tagName) {\n\n    return [].slice.call(document.getElementsByTagName(tagName));\n\n  }\n\n  function bindToNewVideos_(evt) {\n\n    var el = evt.target || evt.srcElement;\n    var isYT = checkIfYouTubeVideo(el);\n\n    // We only bind to iframes with a YouTube URL with the enablejsapi=1 and \n    // origin=<<hostname>> parameters\n    if (el.tagName === 'IFRAME' && isYT && jsApiEnabled(el.src) && originEnabled(el.src)) {\n\n      addYouTubeEvents(el);\n\n    }\n\n  }\n\n})(document, window, {\n  'events': {\n    'Play': true,\n    'Pause': true,\n    'Watch to End': true\n  },\n  'percentageTracking': {\n    'every': 25,\n    'each': [10, 90]\n  }\n});\n/*\n * Configuration Details\n *\n * @property events object\n * Defines which events emitted by YouTube API\n * will be turned into Google Analytics or GTM events\n *\n * @property percentageTracking object\n * Object with configurations for percentage viewed events\n *\n *   @property each array\n *   Fires an event once each percentage ahs been reached\n *\n *   @property every number\n *   Fires an event for every n% viewed\n *\n * @property forceSyntax int 0, 1, or 2\n * Forces script to use Classic (2) or Universal(1)\n *\n * @property dataLayerName string\n * Tells script to use custom dataLayer name instead of default\n */\n/*\n * v8.1.0\n * Created by the Google Analytics consultants at http://www.lunametrics.com\n * Written by @SayfSharif and @notdanwilkerson\n * Documentation: https://github.com/lunametrics/youtube-google-analytics/\n * Licensed under the Creative Commons 4.0 Attribution Public License\n */\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "0",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "parentFolderId": "27",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "tagId": "20",
+                "name": "GA - Event - Contact Link Clicks",
+                "type": "ua",
+                "liveOnly": false,
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "fieldsToSet",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "fieldName",
+                                        "value": "cookieDomain"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "auto"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "useDebugVersion",
+                        "value": "{{Debug Mode}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "Contact Link Click"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventLabel",
+                        "value": "{{Click URL - No Protocol}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{Link Type Lookup}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "0",
+                "firingTriggerId": [
+                    "33"
+                ],
+                "parentFolderId": "21",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "tagId": "21",
+                "name": "GA - Event - Engagement Timer",
+                "type": "ua",
+                "liveOnly": false,
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "useDebugVersion",
+                        "value": "{{Debug Mode}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "Time"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{Engagement Timer Seconds}}s"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "0",
+                "firingTriggerId": [
+                    "28"
+                ],
+                "parentFolderId": "23",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "tagId": "22",
+                "name": "GA - Event - File Download",
+                "type": "ua",
+                "liveOnly": false,
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "fieldsToSet",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "fieldName",
+                                        "value": "cookieDomain"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "auto"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "useDebugVersion",
+                        "value": "{{Debug Mode}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "File Downloads"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventLabel",
+                        "value": "{{Click Filename}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{Click File Extension}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "0",
+                "firingTriggerId": [
+                    "34"
+                ],
+                "parentFolderId": "24",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "tagId": "23",
+                "name": "GA - Event - Outbound Link Click",
+                "type": "ua",
+                "liveOnly": false,
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "fieldsToSet",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "fieldName",
+                                        "value": "cookieDomain"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "auto"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "useDebugVersion",
+                        "value": "{{Debug Mode}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "Outbound Link Click"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventLabel",
+                        "value": "{{Click URL}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{Click Hostname}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "0",
+                "firingTriggerId": [
+                    "35"
+                ],
+                "parentFolderId": "25",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "tagId": "24",
+                "name": "GA - Event - Scroll Tracking",
+                "type": "ua",
+                "liveOnly": false,
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "fieldsToSet",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "fieldName",
+                                        "value": "cookieDomain"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "auto"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "useDebugVersion",
+                        "value": "{{Debug Mode}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "Scroll Tracking"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventLabel",
+                        "value": "{{Scroll Label}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{Scroll Distance}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "0",
+                "firingTriggerId": [
+                    "30"
+                ],
+                "parentFolderId": "26",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "tagId": "25",
+                "name": "GA - Event - YouTube Tracking",
+                "type": "ua",
+                "liveOnly": false,
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "nonInteraction",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "fieldsToSet",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "fieldName",
+                                        "value": "cookieDomain"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "auto"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "useDebugVersion",
+                        "value": "{{Debug Mode}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventCategory",
+                        "value": "Videos"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_EVENT"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventLabel",
+                        "value": "{{Video URL}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventAction",
+                        "value": "{{Video Action}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "0",
+                "firingTriggerId": [
+                    "32"
+                ],
+                "parentFolderId": "27",
+                "tagFiringOption": "ONCE_PER_EVENT"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "tagId": "26",
+                "name": "GA - Pageview - All Pages",
+                "type": "ua",
+                "liveOnly": false,
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setTrackerName",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "doubleClick",
+                        "value": "false"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "fieldsToSet",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "fieldName",
+                                        "value": "cookieDomain"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "auto"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "useDebugVersion",
+                        "value": "{{Debug Mode}}"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "useHashAutoLink",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackType",
+                        "value": "TRACK_PAGEVIEW"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "decorateFormsAutoLink",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableLinkId",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableEcommerce",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "trackingId",
+                        "value": "{{YOUR_GA_TRACKING_ID}}"
+                    }
+                ],
+                "fingerprint": "0",
+                "firingTriggerId": [
+                    "2147479553"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT"
+            }
+        ],
+        "fingerprint": "0",
+        "trigger": [
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "triggerId": "28",
+                "name": "Event - Engagement Timer",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "engagementTimer"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Engagement Timer Is Greater Than Limit}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "false"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1462238352973",
+                "parentFolderId": "23"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "triggerId": "29",
+                "name": "Event - Remove Cookie",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "removeCookie"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1462238352974",
+                "parentFolderId": "22"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "triggerId": "30",
+                "name": "Event - Scroll Tracking",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "scrollTracking"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1462238352974",
+                "parentFolderId": "26"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "triggerId": "31",
+                "name": "Event - Set Cookie",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "setCookie"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1462238352974",
+                "parentFolderId": "22"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "triggerId": "32",
+                "name": "Event - YouTube Tracking",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "youTubeTrack"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1462238352975",
+                "parentFolderId": "27"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "triggerId": "33",
+                "name": "Link Click - 'tel' Or 'mailto' Protocol",
+                "type": "LINK_CLICK",
+                "filter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Click Protocol}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "mailto|tel"
+                            },
+                            {
+                                "type": "BOOLEAN",
+                                "key": "ignore_case",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "autoEventFilter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page URL}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": ".*"
+                            },
+                            {
+                                "type": "BOOLEAN",
+                                "key": "ignore_case",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "waitForTags": {
+                    "type": "BOOLEAN",
+                    "value": "true"
+                },
+                "checkValidation": {
+                    "type": "BOOLEAN",
+                    "value": "false"
+                },
+                "waitForTagsTimeout": {
+                    "type": "TEMPLATE",
+                    "value": "2000"
+                },
+                "uniqueTriggerId": {
+                    "type": "TEMPLATE",
+                    "value": ""
+                },
+                "fingerprint": "1462238352976",
+                "parentFolderId": "21"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "triggerId": "34",
+                "name": "Link Click - File Extension Is PDF, XLS, DOC, or TXT",
+                "type": "LINK_CLICK",
+                "filter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Click File Extension}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "pdf|docx?|xlsx?|txt"
+                            },
+                            {
+                                "type": "BOOLEAN",
+                                "key": "ignore_case",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "autoEventFilter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page URL}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": ".*"
+                            }
+                        ]
+                    }
+                ],
+                "waitForTags": {
+                    "type": "BOOLEAN",
+                    "value": "true"
+                },
+                "checkValidation": {
+                    "type": "BOOLEAN",
+                    "value": "false"
+                },
+                "waitForTagsTimeout": {
+                    "type": "TEMPLATE",
+                    "value": "2000"
+                },
+                "uniqueTriggerId": {
+                    "type": "TEMPLATE",
+                    "value": ""
+                },
+                "fingerprint": "1462238352977",
+                "parentFolderId": "24"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "triggerId": "35",
+                "name": "Link Click - Outbound Link",
+                "type": "LINK_CLICK",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Is Outbound Click URL}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "autoEventFilter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page URL}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": ".*"
+                            }
+                        ]
+                    }
+                ],
+                "waitForTags": {
+                    "type": "BOOLEAN",
+                    "value": "true"
+                },
+                "checkValidation": {
+                    "type": "BOOLEAN",
+                    "value": "false"
+                },
+                "waitForTagsTimeout": {
+                    "type": "TEMPLATE",
+                    "value": "2000"
+                },
+                "uniqueTriggerId": {
+                    "type": "TEMPLATE",
+                    "value": ""
+                },
+                "fingerprint": "1462238352979",
+                "parentFolderId": "25"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "45",
+                "name": "AJAX Content Type",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.contentType"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "46",
+                "name": "AJAX Fragment",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.fragment"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "47",
+                "name": "AJAX Headers",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.headers"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "48",
+                "name": "AJAX Hostname",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.hostname"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "49",
+                "name": "AJAX Pathname",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.pathname"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "50",
+                "name": "AJAX Protocol",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.protocol"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "51",
+                "name": "AJAX Query Parameters",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.queryParameters"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "52",
+                "name": "AJAX Response",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.response"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "53",
+                "name": "AJAX Status Code",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.statusCode"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "54",
+                "name": "AJAX Status Text",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.statusText"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "55",
+                "name": "AJAX Timestamp",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.timestamp"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "56",
+                "name": "AJAX Type",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.type"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "57",
+                "name": "AJAX URL",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.url"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "20"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "41",
+                "name": "Click File Extension",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function() {\n  \n  try {\n    \n    var e = {{Click Element}}.pathname.split('.');\n    \n    return e.length > 1 ? e.pop().toUpperCase() : 'HTML';\n  \n  } catch(e) {}\n\n}"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "24"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "58",
+                "name": "Click Filename",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function() {\n  \n  try {\n    \n    return {{Click Element}}.pathname.split('/').pop();\n    \n  } catch(e) {}\n  \n}"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "24"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "42",
+                "name": "Click Hostname",
+                "type": "aev",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "stripWww",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "component",
+                        "value": "HOST"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "varType",
+                        "value": "URL"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "25"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "40",
+                "name": "Click Protocol",
+                "type": "aev",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "component",
+                        "value": "PROTOCOL"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "varType",
+                        "value": "URL"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "21"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "59",
+                "name": "Click URL - No Protocol",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function() {\n  \n  if ({{Click URL}}) {\n   \n    return {{Click URL}}.split(':')[1];\n    \n  }\n  \n}"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "21"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "60",
+                "name": "Cookie Domain",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.cookieDomain"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "22"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "61",
+                "name": "Cookie Expires",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.cookieExpires"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "22"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "62",
+                "name": "Cookie Name",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.cookieName"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "22"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "63",
+                "name": "Cookie Path",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.cookiePath"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "22"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "64",
+                "name": "Cookie Value",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.cookieValue"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "22"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "65",
+                "name": "Engagement Timer Idle Milliseconds",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "65000"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "23"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "66",
+                "name": "Engagement Timer Interval Milliseconds",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "15000"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "23"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "39",
+                "name": "Engagement Timer Is Greater Than Limit",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function() {\n    \n    if({{Engagement Timer Seconds}} > {{Engagement Timer Limit Seconds}}) {\n        \n        return true;\n        \n    }\n    \n    return false;\n    \n}"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "23"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "37",
+                "name": "Engagement Timer Limit Seconds",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "1800"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "23"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "38",
+                "name": "Engagement Timer Seconds",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.counter"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "23"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "44",
+                "name": "Is Outbound Click URL",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function() {\n  \n  if ({{Click Hostname}}.indexOf({{Page Domain Name}}) === -1) {\n   \n    return true;\n    \n  }\n  \n  return false;\n  \n}"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "25"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "67",
+                "name": "Link Type Lookup",
+                "type": "smm",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "input",
+                        "value": "{{Click Protocol}}"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "map",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "key",
+                                        "value": "mailto"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "Email Link"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "key",
+                                        "value": "tel"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "value",
+                                        "value": "Phone Number Link"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "21"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "43",
+                "name": "Page Domain Name",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function() {\n  \n  return {{Page Hostname}}.match(/[^.]*\\.[^.]{2,3}(?:\\.[^.]{2,3})?$/)[0];\n\n}"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "25"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "68",
+                "name": "Scroll Distance",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.distance"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "26"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "69",
+                "name": "Scroll Label",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.label"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "26"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "70",
+                "name": "Video Action",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.videoAction"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "27"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "71",
+                "name": "Video URL",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "attributes.videoUrl"
+                    }
+                ],
+                "fingerprint": "0",
+                "parentFolderId": "27"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "variableId": "72",
+                "name": "YOUR_GA_TRACKING_ID",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "UA-XXXXXX-YY"
+                    }
+                ],
+                "fingerprint": "0"
+            }
+        ],
+        "folder": [
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "folderId": "20",
+                "name": "LunaMetrics AJAX Listener Plugin",
+                "fingerprint": "1462238352969"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "folderId": "21",
+                "name": "LunaMetrics Contact Link Clicks Plugin",
+                "fingerprint": "1462238352970"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "folderId": "22",
+                "name": "LunaMetrics Cookie Management Plugin",
+                "fingerprint": "1462238352970"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "folderId": "23",
+                "name": "LunaMetrics Engagement Timer Plugin",
+                "fingerprint": "1462238352970"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "folderId": "24",
+                "name": "LunaMetrics File Downloads Plugin",
+                "fingerprint": "1462238352970"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "folderId": "25",
+                "name": "LunaMetrics Outbound Link Clicks Plugin",
+                "fingerprint": "1462238352971"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "folderId": "26",
+                "name": "LunaMetrics Scroll Tracking Plugin",
+                "fingerprint": "1462238352971"
+            },
+            {
+                "accountId": "263956808",
+                "containerId": "2187362",
+                "folderId": "27",
+                "name": "LunaMetrics YouTube Tracking Plugin",
+                "fingerprint": "1462238352971"
+            }
+        ]
+    }
+}
