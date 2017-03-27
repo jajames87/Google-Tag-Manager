@@ -1,0 +1,42 @@
+<script>
+(function(){
+var data = {
+  "@context": "http://schema.org", 
+  "@type": "WebSite", 
+  "url": {{Page URL}}, 
+  "potentialAction": { 
+    "@type": "SearchAction", 
+    "target": "http://www.pduonline.co.uk/index.php/catalogsearch/result/?q={search_term}", 
+    "query-input": "required name=search_term" }
+}
+var script = document.createElement('script');
+script.type = "application/ld+json";
+script.innerHTML = JSON.stringify(data);
+document.getElementsByTagName('head')[0].appendChild(script);
+})(document);
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://www.schema.org",
+  "@type": "Organization",
+  "name": "PDU Online",
+  "sameAs" : [ "https://www.facebook.com/PDUOnline",
+      "http://twitter.com/PDUOnline" ],
+  "url": "http://www.pduonline.co.uk/",
+  "logo": "http://www.pduonline.co.uk/skin/frontend/smartwave/porto/images/logo_black.png",
+  "description": "PDU Online is a British manufacturer of over 40 years experience in the design and supply of quality electrical installation products.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Pipers Road",
+    "addressLocality": "Redditch",
+    "addressRegion": "Worcestershire",
+    "postalCode": "B98 0HU",
+    "addressCountry": "United Kingdom"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+441527759838",
+    "contactType": "Sales"
+  }
+}
+</script>
